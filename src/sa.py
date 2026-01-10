@@ -11,6 +11,7 @@ class SimulatedAnnealing:
         cooling_rate=0.995,
         min_temp=0.01,
         max_iter=10000,
+        random_seed=None,
     ):
         self.dist_matrix = dist_matrix
         self.n_cities = len(dist_matrix)
@@ -18,17 +19,30 @@ class SimulatedAnnealing:
         self.cooling_rate = cooling_rate
         self.min_temp = min_temp
         self.max_iter = max_iter
+        self.random_seed = random_seed
 
     def get_neighbor(self, path):
         """
-        Generates a neighbor by swapping two random cities (2-opt move).
+        Generates a neighbor using proper 2-opt move.
+
+        2-opt: Removes two edges and reconnects by reversing the segment between them.
+        Example: [0,1,2,3,4,5] with i=1, j=4 becomes [0,1,4,3,2,5]
+                 (reverses segment from index i+1 to j)
         """
         neighbor = path.copy()
-        i, j = np.random.choice(len(path), 2, replace=False)
-        neighbor[i], neighbor[j] = neighbor[j], neighbor[i]
+        # Select two different positions, ensure i < j
+        i, j = sorted(np.random.choice(len(path), 2, replace=False))
+
+        # Reverse the segment between i and j (inclusive of both endpoints)
+        neighbor[i:j+1] = neighbor[i:j+1][::-1]
+
         return neighbor
 
     def solve(self):
+        # Set random seed for reproducibility
+        if self.random_seed is not None:
+            np.random.seed(self.random_seed)
+
         # Initial solution
         current_path = np.random.permutation(self.n_cities)
         current_dist = calculate_total_distance(current_path, self.dist_matrix)

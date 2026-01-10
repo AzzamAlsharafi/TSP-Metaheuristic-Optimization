@@ -20,8 +20,8 @@ def run_experiments():
         {"initial_temp": 5000, "cooling_rate": 0.99, "max_iter": 10000},
         {"initial_temp": 5000, "cooling_rate": 0.995, "max_iter": 10000},
         {"initial_temp": 5000, "cooling_rate": 0.999, "max_iter": 10000},
-        {"initial_temp": 1000, "cooling_rate": 0.999, "max_iter": 20000},
-        {"initial_temp": 5000, "cooling_rate": 0.999, "max_iter": 20000},
+        {"initial_temp": 1000, "cooling_rate": 0.999, "max_iter": 10000},
+        {"initial_temp": 5000, "cooling_rate": 0.999, "max_iter": 10000},
     ]
 
     print("Running SA Experiments (5 trials per config)...")
@@ -29,13 +29,16 @@ def run_experiments():
         print(f"Config SA-{i + 1}: {params}")
         trials = []
         for t in range(5):
-            sa = SimulatedAnnealing(dist_matrix, **params)
+            # Use different random seed for each trial for reproducibility
+            random_seed = 42 + i * 5 + t  # Unique seed per config and trial
+            sa = SimulatedAnnealing(dist_matrix, random_seed=random_seed, **params)
             best_path, best_dist, history, exec_time = sa.solve()
             trials.append(
                 {
                     "trial_id": t + 1,
                     "best_dist": float(best_dist),
                     "exec_time": float(exec_time),
+                    "random_seed": random_seed,
                 }
             )
         results["sa_configs"].append(
@@ -44,13 +47,13 @@ def run_experiments():
 
     # HSA Configurations (8)
     hsa_params_list = [
-        {"hms": 10, "hmcr": 0.8, "par": 0.2, "max_iter": 5000},
-        {"hms": 10, "hmcr": 0.9, "par": 0.3, "max_iter": 5000},
-        {"hms": 20, "hmcr": 0.8, "par": 0.2, "max_iter": 5000},
-        {"hms": 20, "hmcr": 0.9, "par": 0.3, "max_iter": 5000},
-        {"hms": 30, "hmcr": 0.9, "par": 0.3, "max_iter": 5000},
-        {"hms": 20, "hmcr": 0.95, "par": 0.3, "max_iter": 5000},
-        {"hms": 20, "hmcr": 0.9, "par": 0.4, "max_iter": 5000},
+        {"hms": 10, "hmcr": 0.8, "par": 0.2, "max_iter": 10000},
+        {"hms": 10, "hmcr": 0.9, "par": 0.3, "max_iter": 10000},
+        {"hms": 20, "hmcr": 0.8, "par": 0.2, "max_iter": 10000},
+        {"hms": 20, "hmcr": 0.9, "par": 0.3, "max_iter": 10000},
+        {"hms": 30, "hmcr": 0.9, "par": 0.3, "max_iter": 10000},
+        {"hms": 20, "hmcr": 0.95, "par": 0.3, "max_iter": 10000},
+        {"hms": 20, "hmcr": 0.9, "par": 0.4, "max_iter": 10000},
         {"hms": 20, "hmcr": 0.95, "par": 0.3, "max_iter": 10000},
     ]
 
@@ -59,13 +62,16 @@ def run_experiments():
         print(f"Config HSA-{i + 1}: {params}")
         trials = []
         for t in range(5):
-            hsa = HarmonySearch(dist_matrix, **params)
+            # Use different random seed for each trial for reproducibility
+            random_seed = 1000 + i * 5 + t  # Unique seed per config and trial
+            hsa = HarmonySearch(dist_matrix, random_seed=random_seed, **params)
             best_path, best_dist, history, exec_time = hsa.solve()
             trials.append(
                 {
                     "trial_id": t + 1,
                     "best_dist": float(best_dist),
                     "exec_time": float(exec_time),
+                    "random_seed": random_seed,
                 }
             )
         results["hsa_configs"].append(

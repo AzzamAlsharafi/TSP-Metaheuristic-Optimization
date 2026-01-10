@@ -4,13 +4,14 @@ from src.tsp_utils import calculate_total_distance
 
 
 class HarmonySearch:
-    def __init__(self, dist_matrix, hms=20, hmcr=0.9, par=0.3, max_iter=10000):
+    def __init__(self, dist_matrix, hms=20, hmcr=0.9, par=0.3, max_iter=10000, random_seed=None):
         self.dist_matrix = dist_matrix
         self.n_cities = len(dist_matrix)
         self.hms = hms  # Harmony Memory Size
         self.hmcr = hmcr  # Harmony Memory Considering Rate
         self.par = par  # Pitch Adjusting Rate
         self.max_iter = max_iter
+        self.random_seed = random_seed
 
     def initialize_hm(self):
         """
@@ -60,6 +61,10 @@ class HarmonySearch:
         return new_path
 
     def solve(self):
+        # Set random seed for reproducibility
+        if self.random_seed is not None:
+            np.random.seed(self.random_seed)
+
         hm = self.initialize_hm()
         hm.sort(key=lambda x: x[1])  # Sort by distance (best first)
 

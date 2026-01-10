@@ -12,6 +12,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from src.tsp_utils import (
     generate_tsp_instance,
     calculate_distance_matrix,
+    get_optimal_distance,
 )
 from src.sa import SimulatedAnnealing
 from src.hsa import HarmonySearch
@@ -22,18 +23,22 @@ st.title("TSP Metaheuristic Optimization")
 st.markdown("""
 This app explores two metaheuristic algorithms for solving the Traveling Salesman Problem (TSP):
 **Simulated Annealing (SA)** and **Harmony Search Algorithm (HSA)**.
+
+**Benchmark:** rd100 (100-city random TSP by Reinelt) | **Known Optimal Distance:** 7910
 """)
 
 
 # Load or generate instance
+# Uses rd100 TSPLIB benchmark for consistency
 @st.cache_data
 def get_instance():
-    cities = generate_tsp_instance(100)
+    cities = generate_tsp_instance()  # Loads from data/rd100.tsp
     dist_matrix = calculate_distance_matrix(cities)
-    return cities, dist_matrix
+    optimal_distance = get_optimal_distance()
+    return cities, dist_matrix, optimal_distance
 
 
-cities, dist_matrix = get_instance()
+cities, dist_matrix, optimal_distance = get_instance()
 
 col1, col2 = st.columns([1, 2])
 
@@ -43,14 +48,23 @@ with col1:
         "Select Algorithm", ["Simulated Annealing", "Harmony Search"]
     )
 
+    # Random seed input (common for both algorithms)
+    random_seed = st.number_input(
+        "Random Seed (for reproducibility)",
+        min_value=0,
+        max_value=10000,
+        value=42,
+        help="Use the same seed to get reproducible results"
+    )
+
     if algo_choice == "Simulated Annealing":
-        temp = st.slider("Initial Temperature", 100, 10000, 1000)
-        cooling = st.slider("Cooling Rate", 0.9, 0.9999, 0.995, format="%.4f")
-        iters = st.number_input("Max Iterations", 1000, 100000, 10000)
+        temp = st.number_input("Initial Temperature", min_value=100, max_value=10000, value=1000, step=100)
+        cooling = st.number_input("Cooling Rate", min_value=0.9, max_value=0.9999, value=0.995, step=0.001, format="%.4f")
+        iters = st.number_input("Max Iterations", min_value=1000, max_value=10000000, value=50000, step=1000)
 
         if st.button("Run SA"):
             sa = SimulatedAnnealing(
-                dist_matrix, initial_temp=temp, cooling_rate=cooling, max_iter=iters
+                dist_matrix, initial_temp=temp, cooling_rate=cooling, max_iter=int(iters), random_seed=int(random_seed)
             )
             with st.spinner("Running SA..."):
                 best_path, best_dist, history, exec_time = sa.solve()
@@ -63,14 +77,14 @@ with col1:
             )
 
     else:
-        hms = st.slider("Harmony Memory Size (HMS)", 5, 50, 20)
-        hmcr = st.slider("HM Considering Rate (HMCR)", 0.5, 0.99, 0.9, format="%.2f")
-        par = st.slider("Pitch Adjusting Rate (PAR)", 0.1, 0.9, 0.3, format="%.2f")
-        iters = st.number_input("Max Iterations", 100, 20000, 5000)
+        hms = st.number_input("Harmony Memory Size (HMS)", min_value=5, max_value=50, value=20, step=1)
+        hmcr = st.number_input("HM Considering Rate (HMCR)", min_value=0.5, max_value=0.99, value=0.9, step=0.01, format="%.2f")
+        par = st.number_input("Pitch Adjusting Rate (PAR)", min_value=0.1, max_value=0.9, value=0.3, step=0.01, format="%.2f")
+        iters = st.number_input("Max Iterations", min_value=1000, max_value=10000000, value=10000, step=1000)
 
         if st.button("Run HSA"):
             hsa = HarmonySearch(
-                dist_matrix, hms=hms, hmcr=hmcr, par=par, max_iter=iters
+                dist_matrix, hms=hms, hmcr=hmcr, par=par, max_iter=int(iters), random_seed=int(random_seed)
             )
             with st.spinner("Running HSA..."):
                 best_path, best_dist, history, exec_time = hsa.solve()
@@ -89,6 +103,8 @@ with col2:
 
         st.subheader(f"Best Solution ({name})")
         st.write(f"**Total Distance:** {best_dist:.2f}")
+        gap = ((best_dist - optimal_distance) / optimal_distance) * 100
+        st.write(f"**Gap from Optimal (7910):** {gap:.2f}%")
         st.write(f"**Execution Time:** {exec_time:.2f}s")
 
         # Plot Solution
@@ -136,7 +152,7 @@ with col2:
         st.info("Run an algorithm to see the results.")
         # Show instance
         fig_inst = px.scatter(
-            x=cities[:, 0], y=cities[:, 1], title="TSP Instance (100 Cities)"
+            x=cities[:, 0], y=cities[:, 1], title="rd100 TSP Instance (100 Cities, Optimal: 7910)"
         )
         fig_inst.update_layout(height=500)
         st.plotly_chart(fig_inst, use_container_width=True)
@@ -167,6 +183,7 @@ if os.path.exists("experiment_results.json"):
                         "Parameters": params_str,
                         "Best Distance": trial["best_dist"],
                         "Execution Time (s)": trial["exec_time"],
+                        "Random Seed": trial.get("random_seed", "N/A"),
                     }
                 )
     df = pd.DataFrame(all_data)
@@ -245,6 +262,7 @@ if os.path.exists("experiment_results.json"):
                 "Parameters",
                 "Best Distance",
                 "Execution Time (s)",
+                "Random Seed",
             ]
         ],
         use_container_width=True,
@@ -253,4 +271,78 @@ if os.path.exists("experiment_results.json"):
 else:
     st.warning(
         "Experiment results not found. Run `src/experiment_runner.py` to generate them."
+    )
+
+st.divider()
+st.header("Phase 2: Best Configuration Comparison")
+
+if os.path.exists("best_config_results.json"):
+    with open("best_config_results.json", "r") as f:
+        phase2_results = json.load(f)
+
+    st.markdown("""
+    This section shows the **statistical validation** of the best SA and HSA configurations.
+    Each algorithm's best configuration was run **30 times** for robust statistical comparison.
+    """)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.subheader(f"Best SA: {phase2_results['sa']['config_id']}")
+        st.write(f"**Parameters:** {phase2_results['sa']['params']}")
+        stats_sa = phase2_results['sa']['statistics']
+        st.metric("Mean Distance", f"{stats_sa['mean']:.2f}")
+        st.metric("Std Deviation", f"{stats_sa['std']:.2f}")
+        st.write(f"**Min:** {stats_sa['min']:.2f}")
+        st.write(f"**Max:** {stats_sa['max']:.2f}")
+        st.write(f"**95% CI:** [{stats_sa['ci_95'][0]:.2f}, {stats_sa['ci_95'][1]:.2f}]")
+        st.write(f"**Avg Time:** {stats_sa['mean_time']:.2f}s")
+
+    with col2:
+        st.subheader(f"Best HSA: {phase2_results['hsa']['config_id']}")
+        st.write(f"**Parameters:** {phase2_results['hsa']['params']}")
+        stats_hsa = phase2_results['hsa']['statistics']
+        st.metric("Mean Distance", f"{stats_hsa['mean']:.2f}")
+        st.metric("Std Deviation", f"{stats_hsa['std']:.2f}")
+        st.write(f"**Min:** {stats_hsa['min']:.2f}")
+        st.write(f"**Max:** {stats_hsa['max']:.2f}")
+        st.write(f"**95% CI:** [{stats_hsa['ci_95'][0]:.2f}, {stats_hsa['ci_95'][1]:.2f}]")
+        st.write(f"**Avg Time:** {stats_hsa['mean_time']:.2f}s")
+
+    st.divider()
+    st.subheader("Statistical Significance Test")
+
+    tests = phase2_results['statistical_tests']
+
+    col1, col2, col3 = st.columns(3)
+    col1.metric("t-statistic", f"{tests['t_statistic']:.4f}")
+    col2.metric("p-value", f"{tests['p_value']:.4f}")
+    col3.metric("Cohen's d", f"{tests['cohens_d']:.4f}")
+
+    if tests['significant']:
+        st.success(f"✓ **{tests['better_algorithm']} is SIGNIFICANTLY better** (p < 0.05)")
+        st.write(f"{tests['better_algorithm']} found solutions **{tests['percentage_difference']:.2f}% better** on average")
+    else:
+        st.info("No significant difference between algorithms (p >= 0.05)")
+
+    # Boxplot comparison
+    st.subheader("Distribution Comparison")
+
+    sa_dists = [trial['best_dist'] for trial in phase2_results['sa']['trials']]
+    hsa_dists = [trial['best_dist'] for trial in phase2_results['hsa']['trials']]
+
+    import plotly.graph_objects as go
+    fig = go.Figure()
+    fig.add_trace(go.Box(y=sa_dists, name=phase2_results['sa']['config_id'], marker_color='blue'))
+    fig.add_trace(go.Box(y=hsa_dists, name=phase2_results['hsa']['config_id'], marker_color='green'))
+    fig.update_layout(
+        title="Distance Distribution (30 trials each)",
+        yaxis_title="Tour Distance",
+        height=400
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+else:
+    st.info(
+        "Phase 2 results not found. After running Phase 1, run `PYTHONPATH=. python3 src/best_config_comparison.py` to generate Phase 2 results."
     )

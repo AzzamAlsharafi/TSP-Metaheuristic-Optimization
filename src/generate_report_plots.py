@@ -11,13 +11,13 @@ def generate_plots():
     # Setup
     cities = generate_tsp_instance(100)
     dist_matrix = calculate_distance_matrix(cities)
-    report_dir = "/home/azzam/Documents/University/Masters/Semester 1/TC6544 - Advanced Artifical Intelligence/Project_2/report/images"
+    report_dir = os.path.join(os.getcwd(), "report", "images")
     os.makedirs(report_dir, exist_ok=True)
 
     # 1. SA Run
     print("Generating SA plots...")
     sa = SimulatedAnnealing(
-        dist_matrix, initial_temp=1000, cooling_rate=0.999, max_iter=20000
+        dist_matrix, initial_temp=1000, cooling_rate=0.999, max_iter=20000, random_seed=42
     )
     best_path_sa, best_dist_sa, history_sa, _ = sa.solve()
 
@@ -42,7 +42,7 @@ def generate_plots():
 
     # 2. HSA Run
     print("Generating HSA plots...")
-    hsa = HarmonySearch(dist_matrix, hms=20, hmcr=0.95, par=0.3, max_iter=10000)
+    hsa = HarmonySearch(dist_matrix, hms=20, hmcr=0.95, par=0.3, max_iter=10000, random_seed=1000)
     best_path_hsa, best_dist_hsa, history_hsa, _ = hsa.solve()
 
     # HSA Tour
@@ -66,10 +66,13 @@ def generate_plots():
 
     # 3. Boxplots from experiment_results.json
     print("Generating boxplots...")
-    with open(
-        "/home/azzam/Documents/University/Masters/Semester 1/TC6544 - Advanced Artifical Intelligence/Project_2/experiment_results.json",
-        "r",
-    ) as f:
+    results_file = "experiment_results.json"
+    if not os.path.exists(results_file):
+        print(f"Warning: {results_file} not found. Run experiment_runner.py first.")
+        print("Skipping boxplot generation.")
+        return
+
+    with open(results_file, "r") as f:
         results = json.load(f)
 
     sa_dists = []

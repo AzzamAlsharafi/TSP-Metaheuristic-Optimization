@@ -1,0 +1,654 @@
+{
+    "sa_configs": [
+        {
+            "config_id": "SA-1",
+            "params": {
+                "initial_temp": 1000,
+                "cooling_rate": 0.99,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 20388.604956472296,
+                    "exec_time": 0.019374847412109375,
+                    "random_seed": 42
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 20117.85051268403,
+                    "exec_time": 0.018923044204711914,
+                    "random_seed": 43
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 20812.12441022696,
+                    "exec_time": 0.018756866455078125,
+                    "random_seed": 44
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 19080.89041565369,
+                    "exec_time": 0.019388914108276367,
+                    "random_seed": 45
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 17505.02269041157,
+                    "exec_time": 0.018819093704223633,
+                    "random_seed": 46
+                }
+            ]
+        },
+        {
+            "config_id": "SA-2",
+            "params": {
+                "initial_temp": 1000,
+                "cooling_rate": 0.995,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 14336.444797277052,
+                    "exec_time": 0.03847074508666992,
+                    "random_seed": 47
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 15296.709930220293,
+                    "exec_time": 0.037613868713378906,
+                    "random_seed": 48
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 15407.67445611806,
+                    "exec_time": 0.0379641056060791,
+                    "random_seed": 49
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 14138.57507332519,
+                    "exec_time": 0.037735939025878906,
+                    "random_seed": 50
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 14646.835793834802,
+                    "exec_time": 0.0376439094543457,
+                    "random_seed": 51
+                }
+            ]
+        },
+        {
+            "config_id": "SA-3",
+            "params": {
+                "initial_temp": 1000,
+                "cooling_rate": 0.999,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 10375.996481178698,
+                    "exec_time": 0.16588592529296875,
+                    "random_seed": 52
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 10248.955096048037,
+                    "exec_time": 0.16779184341430664,
+                    "random_seed": 53
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 10251.444250334733,
+                    "exec_time": 0.16778326034545898,
+                    "random_seed": 54
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 10271.258763190395,
+                    "exec_time": 0.16676092147827148,
+                    "random_seed": 55
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 10317.310173099184,
+                    "exec_time": 0.16629695892333984,
+                    "random_seed": 56
+                }
+            ]
+        },
+        {
+            "config_id": "SA-4",
+            "params": {
+                "initial_temp": 5000,
+                "cooling_rate": 0.99,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 19958.025096666563,
+                    "exec_time": 0.022202014923095703,
+                    "random_seed": 57
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 20382.50319589948,
+                    "exec_time": 0.021453857421875,
+                    "random_seed": 58
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 21948.043217407005,
+                    "exec_time": 0.02171492576599121,
+                    "random_seed": 59
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 20868.771556843254,
+                    "exec_time": 0.021615266799926758,
+                    "random_seed": 60
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 19300.46077223437,
+                    "exec_time": 0.0216372013092041,
+                    "random_seed": 61
+                }
+            ]
+        },
+        {
+            "config_id": "SA-5",
+            "params": {
+                "initial_temp": 5000,
+                "cooling_rate": 0.995,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 14525.695721540485,
+                    "exec_time": 0.043579816818237305,
+                    "random_seed": 62
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 16112.867658427178,
+                    "exec_time": 0.043152809143066406,
+                    "random_seed": 63
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 15285.557120966641,
+                    "exec_time": 0.04300093650817871,
+                    "random_seed": 64
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 15168.851525135535,
+                    "exec_time": 0.043183088302612305,
+                    "random_seed": 65
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 15903.892436162212,
+                    "exec_time": 0.04315972328186035,
+                    "random_seed": 66
+                }
+            ]
+        },
+        {
+            "config_id": "SA-6",
+            "params": {
+                "initial_temp": 5000,
+                "cooling_rate": 0.999,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 10521.52931145405,
+                    "exec_time": 0.1651308536529541,
+                    "random_seed": 67
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 9901.80299572003,
+                    "exec_time": 0.16382598876953125,
+                    "random_seed": 68
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 11657.181579427968,
+                    "exec_time": 0.1653602123260498,
+                    "random_seed": 69
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 11283.97566169036,
+                    "exec_time": 0.16517114639282227,
+                    "random_seed": 70
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 11055.166560532949,
+                    "exec_time": 0.16565799713134766,
+                    "random_seed": 71
+                }
+            ]
+        },
+        {
+            "config_id": "SA-7",
+            "params": {
+                "initial_temp": 1000,
+                "cooling_rate": 0.999,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 10280.855251282106,
+                    "exec_time": 0.1670370101928711,
+                    "random_seed": 72
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 10428.662351664607,
+                    "exec_time": 0.16539311408996582,
+                    "random_seed": 73
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 10270.050150160103,
+                    "exec_time": 0.1649470329284668,
+                    "random_seed": 74
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 10356.910302156031,
+                    "exec_time": 0.16508007049560547,
+                    "random_seed": 75
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 10023.428257409978,
+                    "exec_time": 0.16478276252746582,
+                    "random_seed": 76
+                }
+            ]
+        },
+        {
+            "config_id": "SA-8",
+            "params": {
+                "initial_temp": 5000,
+                "cooling_rate": 0.999,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 10225.2419248716,
+                    "exec_time": 0.16598987579345703,
+                    "random_seed": 77
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 10627.187413750793,
+                    "exec_time": 0.1640310287475586,
+                    "random_seed": 78
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 11766.509828545086,
+                    "exec_time": 0.16514801979064941,
+                    "random_seed": 79
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 11138.7750362052,
+                    "exec_time": 0.16270780563354492,
+                    "random_seed": 80
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 11164.380845775295,
+                    "exec_time": 0.16182422637939453,
+                    "random_seed": 81
+                }
+            ]
+        }
+    ],
+    "hsa_configs": [
+        {
+            "config_id": "HSA-1",
+            "params": {
+                "hms": 10,
+                "hmcr": 0.8,
+                "par": 0.2,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 46447.021462057135,
+                    "exec_time": 4.08699631690979,
+                    "random_seed": 1000
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 46576.97790922516,
+                    "exec_time": 4.051054239273071,
+                    "random_seed": 1001
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 46412.9382040858,
+                    "exec_time": 4.015074968338013,
+                    "random_seed": 1002
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 44940.91572539898,
+                    "exec_time": 4.06547999382019,
+                    "random_seed": 1003
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 45737.53401019429,
+                    "exec_time": 4.0786778926849365,
+                    "random_seed": 1004
+                }
+            ]
+        },
+        {
+            "config_id": "HSA-2",
+            "params": {
+                "hms": 10,
+                "hmcr": 0.9,
+                "par": 0.3,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 45886.78481481195,
+                    "exec_time": 3.915842056274414,
+                    "random_seed": 1005
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 46342.94671954122,
+                    "exec_time": 3.842782974243164,
+                    "random_seed": 1006
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 46734.49576279836,
+                    "exec_time": 3.8228600025177,
+                    "random_seed": 1007
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 45460.576325033115,
+                    "exec_time": 3.8894600868225098,
+                    "random_seed": 1008
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 46948.003908163315,
+                    "exec_time": 3.938391923904419,
+                    "random_seed": 1009
+                }
+            ]
+        },
+        {
+            "config_id": "HSA-3",
+            "params": {
+                "hms": 20,
+                "hmcr": 0.8,
+                "par": 0.2,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 47264.13170544806,
+                    "exec_time": 4.098610877990723,
+                    "random_seed": 1010
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 46497.38052004918,
+                    "exec_time": 4.069636106491089,
+                    "random_seed": 1011
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 46179.637739563164,
+                    "exec_time": 4.04244589805603,
+                    "random_seed": 1012
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 46729.14825851399,
+                    "exec_time": 4.097937822341919,
+                    "random_seed": 1013
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 45242.44659712259,
+                    "exec_time": 4.058408975601196,
+                    "random_seed": 1014
+                }
+            ]
+        },
+        {
+            "config_id": "HSA-4",
+            "params": {
+                "hms": 20,
+                "hmcr": 0.9,
+                "par": 0.3,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 45856.79207528923,
+                    "exec_time": 3.953500986099243,
+                    "random_seed": 1015
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 44177.204376598274,
+                    "exec_time": 3.9474499225616455,
+                    "random_seed": 1016
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 46473.04494958131,
+                    "exec_time": 3.9309277534484863,
+                    "random_seed": 1017
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 45906.33847669028,
+                    "exec_time": 3.9027421474456787,
+                    "random_seed": 1018
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 46874.78532430374,
+                    "exec_time": 3.911473035812378,
+                    "random_seed": 1019
+                }
+            ]
+        },
+        {
+            "config_id": "HSA-5",
+            "params": {
+                "hms": 30,
+                "hmcr": 0.9,
+                "par": 0.3,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 46873.17894803638,
+                    "exec_time": 3.956484794616699,
+                    "random_seed": 1020
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 45967.49738959311,
+                    "exec_time": 3.9457991123199463,
+                    "random_seed": 1021
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 46369.047525644346,
+                    "exec_time": 4.031394004821777,
+                    "random_seed": 1022
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 45840.7837375073,
+                    "exec_time": 3.988886833190918,
+                    "random_seed": 1023
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 47161.825105336124,
+                    "exec_time": 4.007460832595825,
+                    "random_seed": 1024
+                }
+            ]
+        },
+        {
+            "config_id": "HSA-6",
+            "params": {
+                "hms": 20,
+                "hmcr": 0.95,
+                "par": 0.3,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 46356.23641789601,
+                    "exec_time": 3.8603079319000244,
+                    "random_seed": 1025
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 46038.589042202555,
+                    "exec_time": 3.815716028213501,
+                    "random_seed": 1026
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 45505.9966214947,
+                    "exec_time": 3.8717949390411377,
+                    "random_seed": 1027
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 46649.71335445377,
+                    "exec_time": 3.7870140075683594,
+                    "random_seed": 1028
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 46459.800768150475,
+                    "exec_time": 3.774416923522949,
+                    "random_seed": 1029
+                }
+            ]
+        },
+        {
+            "config_id": "HSA-7",
+            "params": {
+                "hms": 20,
+                "hmcr": 0.9,
+                "par": 0.4,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 46715.32301500834,
+                    "exec_time": 4.096928119659424,
+                    "random_seed": 1030
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 46392.51294527358,
+                    "exec_time": 4.040534019470215,
+                    "random_seed": 1031
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 45598.60064752839,
+                    "exec_time": 3.9937329292297363,
+                    "random_seed": 1032
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 46336.244371588895,
+                    "exec_time": 3.9711849689483643,
+                    "random_seed": 1033
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 45637.62503343454,
+                    "exec_time": 4.065771102905273,
+                    "random_seed": 1034
+                }
+            ]
+        },
+        {
+            "config_id": "HSA-8",
+            "params": {
+                "hms": 20,
+                "hmcr": 0.95,
+                "par": 0.3,
+                "max_iter": 10000
+            },
+            "trials": [
+                {
+                    "trial_id": 1,
+                    "best_dist": 47111.14229070286,
+                    "exec_time": 3.8567323684692383,
+                    "random_seed": 1035
+                },
+                {
+                    "trial_id": 2,
+                    "best_dist": 45593.995609238475,
+                    "exec_time": 3.886697292327881,
+                    "random_seed": 1036
+                },
+                {
+                    "trial_id": 3,
+                    "best_dist": 46035.44622338294,
+                    "exec_time": 3.853851318359375,
+                    "random_seed": 1037
+                },
+                {
+                    "trial_id": 4,
+                    "best_dist": 46118.99800733971,
+                    "exec_time": 3.821810007095337,
+                    "random_seed": 1038
+                },
+                {
+                    "trial_id": 5,
+                    "best_dist": 45875.73267042524,
+                    "exec_time": 3.8578009605407715,
+                    "random_seed": 1039
+                }
+            ]
+        }
+    ]
+}
