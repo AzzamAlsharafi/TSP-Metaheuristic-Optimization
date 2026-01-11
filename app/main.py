@@ -60,20 +60,23 @@ with col1:
     if algo_choice == "Simulated Annealing":
         temp = st.number_input("Initial Temperature", min_value=0.0000001, max_value=10000.0, value=1000.0, step=0.0000001, format="%.7f")
         cooling = st.number_input("Cooling Rate", min_value=0.9, max_value=0.999999999, value=0.995, step=0.000000001, format="%.9f")
+        min_temp = st.number_input("Min Temperature (0 = no early stop)", min_value=0.0, max_value=1.0, value=0.0, step=0.001, format="%.3f",
+                                    help="Set to 0 to disable early stopping and run full max_iter")
         iters = st.number_input("Max Iterations", min_value=1000, max_value=10000000, value=50000, step=1000)
 
         if st.button("Run SA"):
             sa = SimulatedAnnealing(
-                dist_matrix, initial_temp=temp, cooling_rate=cooling, max_iter=int(iters), random_seed=int(random_seed)
+                dist_matrix, initial_temp=temp, cooling_rate=cooling, min_temp=min_temp, max_iter=int(iters), random_seed=int(random_seed)
             )
             with st.spinner("Running SA..."):
-                best_path, best_dist, history, exec_time = sa.solve()
+                best_path, best_dist, history, exec_time, metadata = sa.solve()
             st.session_state["result"] = (
                 best_path,
                 best_dist,
                 history,
                 exec_time,
                 "SA",
+                metadata,
             )
 
     else:
@@ -94,18 +97,28 @@ with col1:
                 history,
                 exec_time,
                 "HSA",
+                None,  # HSA doesn't have metadata yet
             )
 
 with col2:
     st.header("Visualization")
     if "result" in st.session_state:
-        best_path, best_dist, history, exec_time, name = st.session_state["result"]
+        best_path, best_dist, history, exec_time, name, metadata = st.session_state["result"]
 
         st.subheader(f"Best Solution ({name})")
         st.write(f"**Total Distance:** {best_dist:.2f}")
         gap = ((best_dist - optimal_distance) / optimal_distance) * 100
         st.write(f"**Gap from Optimal (7910):** {gap:.2f}%")
         st.write(f"**Execution Time:** {exec_time:.2f}s")
+
+        # Display early stopping info for SA
+        if metadata is not None:
+            st.write(f"**Iterations Completed:** {metadata['iterations_completed']:,}")
+            if metadata['early_stopped']:
+                st.warning(f"⚠️ **Early Stopping:** Algorithm stopped at iteration {metadata['iterations_completed']:,} (temp reached {metadata['final_temperature']:.6f})")
+            else:
+                st.success(f"✓ **No Early Stopping:** Completed full {metadata['iterations_completed']:,} iterations")
+            st.write(f"**Final Temperature:** {metadata['final_temperature']:.6f}")
 
         # Plot Solution
         fig_sol = go.Figure()
@@ -164,9 +177,9 @@ if os.path.exists("experiment_results.json"):
     with open("experiment_results.json", "r") as f:
         results = json.load(f)
 
-    st.subheader("1. Performance & Stability Analysis (80 Trials)")
+    st.subheader("1. Performance & Stability Analysis (90 Trials)")
     st.markdown("""
-    This section analyzes the performance and stability of both algorithms across **16 different parameter configurations** (8 for SA, 8 for HSA). 
+    This section analyzes the performance and stability of both algorithms across **18 different parameter configurations** (9 for SA, 9 for HSA).
     Each configuration was run for **5 independent trials** to assess reproducibility.
     """)
 
@@ -251,7 +264,7 @@ if os.path.exists("experiment_results.json"):
 
     st.subheader("2. Reproducibility & Raw Trial Data")
     st.markdown(
-        "Below is the raw data for all 80 trials, including the specific parameters used for each run."
+        "Below is the raw data for all 90 trials, including the specific parameters used for each run."
     )
 
     st.dataframe(
@@ -316,12 +329,15 @@ if os.path.exists("best_config_results.json"):
 
     col1, col2, col3 = st.columns(3)
     col1.metric("t-statistic", f"{tests['t_statistic']:.4f}")
-    col2.metric("p-value", f"{tests['p_value']:.4f}")
-    col3.metric("Cohen's d", f"{tests['cohens_d']:.4f}")
+    # Use scientific notation for very small p-values
+    p_val_str = f"{tests['p_value']:.2e}" if tests['p_value'] < 0.0001 else f"{tests['p_value']:.4f}"
+    col2.metric("p-value", p_val_str)
+    col3.metric("Cohen's d", f"{tests['cohens_d']:.2f}")
 
     if tests['significant']:
         st.success(f"✓ **{tests['better_algorithm']} is SIGNIFICANTLY better** (p < 0.05)")
-        st.write(f"{tests['better_algorithm']} found solutions **{tests['percentage_difference']:.2f}% better** on average")
+        worse_algo = 'HSA' if tests['better_algorithm'] == 'SA' else 'SA'
+        st.write(f"{worse_algo} solutions were **{tests['percentage_difference']:.2f}% worse** than {tests['better_algorithm']} on average")
     else:
         st.info("No significant difference between algorithms (p >= 0.05)")
 

@@ -68,7 +68,7 @@ def run_experiments():
             # Use different random seed for each trial for reproducibility
             random_seed = 42 + i * 5 + t  # Unique seed per config and trial
             sa = SimulatedAnnealing(dist_matrix, random_seed=random_seed, **params)
-            best_path, best_dist, history, exec_time = sa.solve()
+            best_path, best_dist, history, exec_time, _ = sa.solve()  # Ignore metadata
             trials.append(
                 {
                     "trial_id": t + 1,
@@ -81,10 +81,10 @@ def run_experiments():
             {"config_id": f"SA-{i + 1}", "params": params, "trials": trials}
         )
 
-    # HSA Configurations (27 total: 3 HMS × 3 HMCR × 3 PAR)
+    # HSA Configurations (9 total: 3 HMS × 1 HMCR × 3 PAR)
     hsa_params_list = []
     hms_values = [30, 60, 90]
-    hmcr_values = [0.3, 0.6, 0.9]
+    hmcr_values = [0.3]
     par_values = [0.3, 0.6, 0.9]
 
     for hms in hms_values:
@@ -98,7 +98,7 @@ def run_experiments():
                 })
 
     print(f"Generated {len(hsa_params_list)} HSA configurations")
-    print("Running HSA Experiments (27 configs × 5 trials = 135 trials)...")
+    print("Running HSA Experiments (9 configs × 5 trials = 45 trials)...")
     for i, params in enumerate(hsa_params_list):
         print(f"Config HSA-{i + 1}: {params}")
         trials = []

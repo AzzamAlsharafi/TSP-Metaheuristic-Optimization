@@ -1,0 +1,458 @@
+{
+  "phase": "Phase 2 - Best Config Comparison",
+  "n_trials": 30,
+  "seed_range": {
+    "sa": "5000-5029",
+    "hsa": "6000-6029"
+  },
+  "sa": {
+    "config_id": "SA-6",
+    "params": {
+      "initial_temp": 3209.59,
+      "cooling_rate": 0.99,
+      "max_iter": 10000
+    },
+    "trials": [
+      {
+        "trial_id": 1,
+        "seed": 5000,
+        "best_dist": 9190.431508418815,
+        "exec_time": 1.0993666648864746,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 2,
+        "seed": 5001,
+        "best_dist": 9273.815592381123,
+        "exec_time": 0.9451773166656494,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 3,
+        "seed": 5002,
+        "best_dist": 9824.377584538408,
+        "exec_time": 1.1283698081970215,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 4,
+        "seed": 5003,
+        "best_dist": 9528.0195045416,
+        "exec_time": 1.080068588256836,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 5,
+        "seed": 5004,
+        "best_dist": 9184.92242813904,
+        "exec_time": 0.8484604358673096,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 6,
+        "seed": 5005,
+        "best_dist": 10016.284704038919,
+        "exec_time": 1.4798316955566406,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 7,
+        "seed": 5006,
+        "best_dist": 9855.715364507101,
+        "exec_time": 1.5338709354400635,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 8,
+        "seed": 5007,
+        "best_dist": 9768.08052953538,
+        "exec_time": 1.2697596549987793,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 9,
+        "seed": 5008,
+        "best_dist": 10223.554098914909,
+        "exec_time": 1.070432424545288,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 10,
+        "seed": 5009,
+        "best_dist": 9669.56140479426,
+        "exec_time": 0.9312388896942139,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 11,
+        "seed": 5010,
+        "best_dist": 9637.868891864035,
+        "exec_time": 1.321770191192627,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 12,
+        "seed": 5011,
+        "best_dist": 9694.07782379773,
+        "exec_time": 1.4554293155670166,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 13,
+        "seed": 5012,
+        "best_dist": 10525.064482874788,
+        "exec_time": 0.9750363826751709,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 14,
+        "seed": 5013,
+        "best_dist": 10168.115756259502,
+        "exec_time": 1.1339128017425537,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 15,
+        "seed": 5014,
+        "best_dist": 9943.956451685066,
+        "exec_time": 0.874053955078125,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 16,
+        "seed": 5015,
+        "best_dist": 9646.34940072445,
+        "exec_time": 1.197932243347168,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 17,
+        "seed": 5016,
+        "best_dist": 9600.978306503053,
+        "exec_time": 1.187434434890747,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 18,
+        "seed": 5017,
+        "best_dist": 9146.722298675884,
+        "exec_time": 1.501746654510498,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 19,
+        "seed": 5018,
+        "best_dist": 10034.19900381217,
+        "exec_time": 1.0901978015899658,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 20,
+        "seed": 5019,
+        "best_dist": 9527.314658473359,
+        "exec_time": 1.1293413639068604,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 21,
+        "seed": 5020,
+        "best_dist": 9230.627623932389,
+        "exec_time": 1.3400754928588867,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 22,
+        "seed": 5021,
+        "best_dist": 9981.346783803374,
+        "exec_time": 1.1146974563598633,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 23,
+        "seed": 5022,
+        "best_dist": 9882.987132287464,
+        "exec_time": 0.9596905708312988,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 24,
+        "seed": 5023,
+        "best_dist": 10045.670220113687,
+        "exec_time": 0.9324135780334473,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 25,
+        "seed": 5024,
+        "best_dist": 10275.578959166802,
+        "exec_time": 0.9811429977416992,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 26,
+        "seed": 5025,
+        "best_dist": 9589.224902561647,
+        "exec_time": 1.1119163036346436,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 27,
+        "seed": 5026,
+        "best_dist": 9549.284689047978,
+        "exec_time": 0.957594633102417,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 28,
+        "seed": 5027,
+        "best_dist": 10158.229053810972,
+        "exec_time": 0.9072620868682861,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 29,
+        "seed": 5028,
+        "best_dist": 9567.3358477578,
+        "exec_time": 1.480515956878662,
+        "iterations": 10001
+      },
+      {
+        "trial_id": 30,
+        "seed": 5029,
+        "best_dist": 9666.662164322057,
+        "exec_time": 1.4400227069854736,
+        "iterations": 10001
+      }
+    ],
+    "statistics": {
+      "mean": 9746.878572376125,
+      "std": 350.40148495931,
+      "min": 9146.722298675884,
+      "max": 10525.064482874788,
+      "mean_time": 1.1492921113967896,
+      "ci_95": [
+        9621.489011345717,
+        9872.268133406533
+      ]
+    }
+  },
+  "hsa": {
+    "config_id": "HSA-8",
+    "params": {
+      "hms": 90,
+      "hmcr": 0.3,
+      "par": 0.6,
+      "max_iter": 10000
+    },
+    "trials": [
+      {
+        "trial_id": 1,
+        "best_dist": 46313.48454889295,
+        "exec_time": 20.538853392914838,
+        "random_seed": 6000
+      },
+      {
+        "trial_id": 2,
+        "best_dist": 46566.518882216886,
+        "exec_time": 20.317180553166903,
+        "random_seed": 6001
+      },
+      {
+        "trial_id": 3,
+        "best_dist": 46832.78671180252,
+        "exec_time": 20.395262504936056,
+        "random_seed": 6002
+      },
+      {
+        "trial_id": 4,
+        "best_dist": 46699.12216100903,
+        "exec_time": 21.98856005002231,
+        "random_seed": 6003
+      },
+      {
+        "trial_id": 5,
+        "best_dist": 46570.49761549831,
+        "exec_time": 25.580336158585776,
+        "random_seed": 6004
+      },
+      {
+        "trial_id": 6,
+        "best_dist": 46184.257083642166,
+        "exec_time": 25.581116209802733,
+        "random_seed": 6005
+      },
+      {
+        "trial_id": 7,
+        "best_dist": 47367.32613709882,
+        "exec_time": 25.578731765874192,
+        "random_seed": 6006
+      },
+      {
+        "trial_id": 8,
+        "best_dist": 46232.13607212195,
+        "exec_time": 25.55238357007549,
+        "random_seed": 6007
+      },
+      {
+        "trial_id": 9,
+        "best_dist": 46764.91580767109,
+        "exec_time": 25.547325439588715,
+        "random_seed": 6008
+      },
+      {
+        "trial_id": 10,
+        "best_dist": 47261.10250837157,
+        "exec_time": 25.53412512907605,
+        "random_seed": 6009
+      },
+      {
+        "trial_id": 11,
+        "best_dist": 45912.707739292644,
+        "exec_time": 25.317581826589095,
+        "random_seed": 6010
+      },
+      {
+        "trial_id": 12,
+        "best_dist": 46570.105254111426,
+        "exec_time": 25.53647160990944,
+        "random_seed": 6011
+      },
+      {
+        "trial_id": 13,
+        "best_dist": 47172.81681029191,
+        "exec_time": 25.17804033542603,
+        "random_seed": 6012
+      },
+      {
+        "trial_id": 14,
+        "best_dist": 46370.419575430155,
+        "exec_time": 25.42700592893526,
+        "random_seed": 6013
+      },
+      {
+        "trial_id": 15,
+        "best_dist": 46317.93901765254,
+        "exec_time": 25.25224462819084,
+        "random_seed": 6014
+      },
+      {
+        "trial_id": 16,
+        "best_dist": 46543.10188604465,
+        "exec_time": 25.2864945710795,
+        "random_seed": 6015
+      },
+      {
+        "trial_id": 17,
+        "best_dist": 46789.5396824932,
+        "exec_time": 25.08904580156845,
+        "random_seed": 6016
+      },
+      {
+        "trial_id": 18,
+        "best_dist": 46687.20668873188,
+        "exec_time": 24.93887102823125,
+        "random_seed": 6017
+      },
+      {
+        "trial_id": 19,
+        "best_dist": 47407.999041135045,
+        "exec_time": 25.10280109637684,
+        "random_seed": 6018
+      },
+      {
+        "trial_id": 20,
+        "best_dist": 44929.18510470944,
+        "exec_time": 25.408682408344134,
+        "random_seed": 6019
+      },
+      {
+        "trial_id": 21,
+        "best_dist": 45869.236819361424,
+        "exec_time": 25.123985407352283,
+        "random_seed": 6020
+      },
+      {
+        "trial_id": 22,
+        "best_dist": 45186.01351803989,
+        "exec_time": 24.91648093704327,
+        "random_seed": 6021
+      },
+      {
+        "trial_id": 23,
+        "best_dist": 46620.06554930129,
+        "exec_time": 24.84429230385414,
+        "random_seed": 6022
+      },
+      {
+        "trial_id": 24,
+        "best_dist": 45108.2232187817,
+        "exec_time": 24.71057905167941,
+        "random_seed": 6023
+      },
+      {
+        "trial_id": 25,
+        "best_dist": 46673.897656813606,
+        "exec_time": 24.264131244980067,
+        "random_seed": 6024
+      },
+      {
+        "trial_id": 26,
+        "best_dist": 44389.98433721741,
+        "exec_time": 24.17147598409042,
+        "random_seed": 6025
+      },
+      {
+        "trial_id": 27,
+        "best_dist": 46317.588563609075,
+        "exec_time": 24.163355497261758,
+        "random_seed": 6026
+      },
+      {
+        "trial_id": 28,
+        "best_dist": 45974.0937619612,
+        "exec_time": 24.135411043700433,
+        "random_seed": 6027
+      },
+      {
+        "trial_id": 29,
+        "best_dist": 45939.64913931295,
+        "exec_time": 24.774172659350537,
+        "random_seed": 6028
+      },
+      {
+        "trial_id": 30,
+        "best_dist": 46094.91711820177,
+        "exec_time": 24.622355530206608,
+        "random_seed": 6029
+      }
+    ],
+    "statistics": {
+      "mean": 46322.22793369395,
+      "std": 705.4218247333523,
+      "min": 44389.98433721741,
+      "max": 47407.999041135045,
+      "mean_time": 24.495911788940422,
+      "ci_95": [
+        46069.79597566484,
+        46574.65989172305
+      ]
+    }
+  },
+  "statistical_tests": {
+    "t_statistic": -254.33891418617773,
+    "p_value": 4.292632248843453e-90,
+    "cohens_d": 65.67002526236958,
+    "significant": true,
+    "percentage_difference": 375.2519238823488,
+    "better_algorithm": "SA"
+  },
+  "time_adjustment_metadata": {
+    "adjusted": true,
+    "original_environment": "Local device",
+    "target_environment": "Google Colab",
+    "sa_time_multiplier": 5.496678828243672,
+    "hsa_time_multiplier": 3.79116099592703,
+    "note": "Execution times have been adjusted to match Colab environment for consistency with Phase 1 results"
+  },
+  "timestamp": "2026-01-11T09:44:18.008246"
+}

@@ -9,7 +9,7 @@ class SimulatedAnnealing:
         dist_matrix,
         initial_temp=1000,
         cooling_rate=0.995,
-        min_temp=0.01,
+        min_temp=0,
         max_iter=10000,
         random_seed=None,
     ):
@@ -54,9 +54,13 @@ class SimulatedAnnealing:
         history = [current_dist]
 
         start_time = time.time()
+        early_stopped = False
+        iterations_completed = 0
 
         for i in range(self.max_iter):
             if temp < self.min_temp:
+                early_stopped = True
+                iterations_completed = i
                 break
 
             neighbor = self.get_neighbor(current_path)
@@ -75,10 +79,18 @@ class SimulatedAnnealing:
 
             history.append(best_dist)
             temp *= self.cooling_rate
+            iterations_completed = i + 1
 
         execution_time = time.time() - start_time
 
-        return best_path, best_dist, history, execution_time
+        # Return metadata about the run
+        metadata = {
+            'early_stopped': early_stopped,
+            'iterations_completed': iterations_completed,
+            'final_temperature': temp
+        }
+
+        return best_path, best_dist, history, execution_time, metadata
 
 
 if __name__ == "__main__":
@@ -94,9 +106,15 @@ if __name__ == "__main__":
     sa = SimulatedAnnealing(
         dist_matrix, initial_temp=1000, cooling_rate=0.999, max_iter=50000
     )
-    best_path, best_dist, history, exec_time = sa.solve()
+    best_path, best_dist, history, exec_time, metadata = sa.solve()
 
     print(f"SA Best Distance: {best_dist:.2f}")
     print(f"Execution Time: {exec_time:.2f}s")
+    print(f"Iterations Completed: {metadata['iterations_completed']}")
+    if metadata['early_stopped']:
+        print(f"⚠️ Early Stopping: Stopped at iteration {metadata['iterations_completed']} (temp: {metadata['final_temperature']:.6f})")
+    else:
+        print(f"✓ No Early Stopping: Completed full {metadata['iterations_completed']} iterations")
+    print(f"Final Temperature: {metadata['final_temperature']:.6f}")
 
     plot_tsp_solution(cities, best_path, best_dist, title="SA Solution")
