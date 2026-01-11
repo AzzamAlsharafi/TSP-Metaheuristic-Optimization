@@ -189,6 +189,9 @@ if os.path.exists("experiment_results.json"):
         for config in results[algo_type]:
             params_str = ", ".join([f"{k}={v}" for k, v in config["params"].items()])
             for trial in config["trials"]:
+                # SA trials use "seed", HSA trials use "random_seed"
+                seed_value = trial.get("seed") or trial.get("random_seed", "N/A")
+
                 all_data.append(
                     {
                         "Algorithm": algo_name,
@@ -196,7 +199,7 @@ if os.path.exists("experiment_results.json"):
                         "Parameters": params_str,
                         "Best Distance": trial["best_dist"],
                         "Execution Time (s)": trial["exec_time"],
-                        "Random Seed": trial.get("random_seed", "N/A"),
+                        "Random Seed": seed_value,
                     }
                 )
     df = pd.DataFrame(all_data)
