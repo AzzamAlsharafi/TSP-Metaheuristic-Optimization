@@ -58,8 +58,8 @@ with col1:
     )
 
     if algo_choice == "Simulated Annealing":
-        temp = st.number_input("Initial Temperature", min_value=100, max_value=10000, value=1000, step=100)
-        cooling = st.number_input("Cooling Rate", min_value=0.9, max_value=0.9999, value=0.995, step=0.001, format="%.4f")
+        temp = st.number_input("Initial Temperature", min_value=0.0000001, max_value=10000.0, value=1000.0, step=0.0000001, format="%.7f")
+        cooling = st.number_input("Cooling Rate", min_value=0.9, max_value=0.999999999, value=0.995, step=0.000000001, format="%.9f")
         iters = st.number_input("Max Iterations", min_value=1000, max_value=10000000, value=50000, step=1000)
 
         if st.button("Run SA"):

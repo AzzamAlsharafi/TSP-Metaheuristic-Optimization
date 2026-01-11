@@ -56,6 +56,17 @@ def run_comparison_trials(n_trials=30):
     with open("experiment_results.json", "r") as f:
         phase1_results = json.load(f)
 
+    # Handle both old format (no metadata) and new format (with metadata)
+    if "metadata" in phase1_results:
+        print("\nPhase 1 Metadata:")
+        print(f"  Total configs tested: {phase1_results['metadata']['sa_configs_count'] + phase1_results['metadata']['hsa_configs_count']}")
+        print(f"  Total trials: {phase1_results['metadata']['total_trials']}")
+        if "initial_temperatures" in phase1_results["metadata"]:
+            print(f"  Initial Temperatures:")
+            for key, val in phase1_results["metadata"]["initial_temperatures"].items():
+                print(f"    {key}: {val:.4f}")
+        print()
+
     # Find best configurations
     print("Analyzing Phase 1 results to find best configurations...")
     best_sa_config, best_hsa_config = find_best_configs(phase1_results)
