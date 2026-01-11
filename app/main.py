@@ -344,22 +344,73 @@ if os.path.exists("best_config_results.json"):
     else:
         st.info("No significant difference between algorithms (p >= 0.05)")
 
-    # Boxplot comparison
+    # Boxplot comparison - Split into two plots for better visibility
     st.subheader("Distribution Comparison")
 
     sa_dists = [trial['best_dist'] for trial in phase2_results['sa']['trials']]
     hsa_dists = [trial['best_dist'] for trial in phase2_results['hsa']['trials']]
 
     import plotly.graph_objects as go
-    fig = go.Figure()
-    fig.add_trace(go.Box(y=sa_dists, name=phase2_results['sa']['config_id'], marker_color='blue'))
-    fig.add_trace(go.Box(y=hsa_dists, name=phase2_results['hsa']['config_id'], marker_color='green'))
-    fig.update_layout(
-        title="Distance Distribution (30 trials each)",
-        yaxis_title="Tour Distance",
-        height=400
-    )
-    st.plotly_chart(fig, use_container_width=True)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # SA Boxplot with its own scale
+        fig_sa = go.Figure()
+        fig_sa.add_trace(go.Box(
+            y=sa_dists,
+            name=phase2_results['sa']['config_id'],
+            marker_color='blue',
+            boxmean='sd',
+            showlegend=False
+        ))
+
+        # Add optimal line
+        fig_sa.add_hline(y=7910, line_dash="dash", line_color="red",
+                        annotation_text="Optimal (7910)", annotation_position="top right")
+
+        fig_sa.update_layout(
+            title=f"{phase2_results['sa']['config_id']} Distribution",
+            yaxis_title="Tour Distance",
+            height=500,
+            yaxis=dict(
+                gridcolor='rgba(128,128,128,0.2)',
+                range=[8500, 11000]  # Custom range to show optimal and SA distribution
+            )
+        )
+        st.plotly_chart(fig_sa, use_container_width=True)
+
+        # Show statistics
+        st.write(f"**Mean:** {phase2_results['sa']['statistics']['mean']:.2f}")
+        st.write(f"**Gap from Optimal:** {phase2_results['sa']['statistics']['mean'] - 7910:.2f} ({((phase2_results['sa']['statistics']['mean'] - 7910)/7910*100):.1f}%)")
+
+    with col2:
+        # HSA Boxplot with its own scale
+        fig_hsa = go.Figure()
+        fig_hsa.add_trace(go.Box(
+            y=hsa_dists,
+            name=phase2_results['hsa']['config_id'],
+            marker_color='green',
+            boxmean='sd',
+            showlegend=False
+        ))
+
+        # Optimal line not shown for HSA (too far below the range)
+
+        fig_hsa.update_layout(
+            title=f"{phase2_results['hsa']['config_id']} Distribution",
+            yaxis_title="Tour Distance",
+            height=500,
+            yaxis=dict(
+                gridcolor='rgba(128,128,128,0.2)',
+                range=[43000, 48000]  # Custom range to show HSA distribution clearly
+            )
+        )
+        st.plotly_chart(fig_hsa, use_container_width=True)
+
+        # Show statistics
+        st.write(f"**Mean:** {phase2_results['hsa']['statistics']['mean']:.2f}")
+        st.write(f"**Gap from Optimal:** {phase2_results['hsa']['statistics']['mean'] - 7910:.2f} ({((phase2_results['hsa']['statistics']['mean'] - 7910)/7910*100):.1f}%)")
 
 else:
     st.info(
